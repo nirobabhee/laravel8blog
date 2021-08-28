@@ -9,7 +9,7 @@
     <h2>My name is {{ $item }}</h2> <br>
 @endforeach
 
-
+@csrf
 @include('welcome');
 @include('hello');
 
