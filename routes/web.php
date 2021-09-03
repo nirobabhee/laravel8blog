@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileupController;
 use App\Http\Controllers\HttpclientapiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
@@ -48,12 +49,45 @@ Route::middleware(['protectedAge'])->group(function () {
 
 
 
+//Http client//
+Route::get('students', [StudentController::class, 'index']);
 
-Route::get('students', [StudentController::class,'index']);
+Route::get('http-api', [HttpclientapiController::class, 'index']);
 
 
-Route::get('http-api',[HttpclientapiController::class,'index'] );
 
 
-Route::view('ssLogin', 'sessionLogin');
-Route::post('session',[SessionController::class, 'load']);
+
+//session //
+// Route::view('ssLogin', 'sessionLogin');
+Route::post('session', [SessionController::class, 'load']);
+Route::view('profile', 'profile');
+
+//if user has login it return redirect to profile page//
+//other wise get view to login //
+Route::get('ssLogin', function () {
+    if (session()->has('user')) {
+        return redirect('profile');
+    }
+    return view('sessionLogin');
+});
+
+Route::get('/logout', function () {
+    if (session()->has('user')) {
+        session()->pull('user');
+    }
+    return redirect('ssLogin');
+});
+///flash session///
+
+
+
+
+///file upload///
+Route::view('file-upload', 'fileUpload');
+Route::post('file-upload',[FileupController::class, 'index'] );
+
+
+
+
+

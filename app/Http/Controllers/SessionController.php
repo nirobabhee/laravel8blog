@@ -13,6 +13,7 @@ class SessionController extends Controller
         // print_r(session('user')) ;
 
         $request->session()->put('user',$data['username']);
-        echo  session('user');
+        // echo  session('user');
+        return  redirect('profile');
     }
 }
