@@ -1,17 +1,20 @@
 <?php
 
+use App\Http\Controllers\HttpclientapiController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+
 */
 
 Route::get('/first', function () {
@@ -20,14 +23,37 @@ Route::get('/first', function () {
 Route::get('/', function () {
     return view('hello');
 });
-//Route::get("users",UserController@show); //This the route system for laravel 7.//
+// Route::get("users",UserController@show); //This the route system for >-< laravel 7.//
 // Route::get("user",[UserController::class,'show']);
-Route::get("user/{id}",[UserController::class,'index']);
+Route::get("user/{id}", [UserController::class, 'index']);
 Route::get("load/{nirob}", [UserController::class, 'loadUser']);
 
-Route::get("post",[PostController::class, "index"]);
-Route::get("post2",[PostController::class,'index2']);
 
-Route::view('form','post_form');
-Route::post('getFormDataForPost',[PostController::class,'getData']);
+Route::get('post', [PostController::class, 'index'])->middleware('ageProtected'); //Single Route middleware//
+// Route::get('post', [PostController::class, 'index'])->middleware(['1stMiddleRoute','2ndMiddleRoute']); //Multiple Route middleware//
+// Route::view('post','post');
+// Route::view('post','post');
 
+
+Route::view('login', 'login');
+Route::post('get_data', [LoginController::class, 'loadForm']);
+// Route::view('about','about'); //using for global middleware
+// Route::view('home','home');
+Route::view('no', 'noaccess');
+Route::middleware(['protectedAge'])->group(function () {
+    Route::view('about', 'about');
+    Route::view('home', 'home');
+});
+
+
+
+
+
+Route::get('students', [StudentController::class,'index']);
+
+
+Route::get('http-api',[HttpclientapiController::class,'index'] );
+
+
+Route::view('ssLogin', 'sessionLogin');
+Route::post('session',[SessionController::class, 'load']);

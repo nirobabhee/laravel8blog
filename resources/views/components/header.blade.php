@@ -1,3 +1,4 @@
 <div>
-    <!-- Order your soul. Reduce your wants. - Augustine -->
+    <h1>{{ $title }}-||||||-Component!</h1>
+    <!-- Knowing is not enough; we must apply. Being willing is not enough; we must do. - Leonardo da Vinci -->
 </div>

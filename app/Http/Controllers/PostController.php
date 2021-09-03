@@ -6,27 +6,26 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    function index()
+
+    public function index()
     {
-        return view('post');
-    }
-    public function index2()
-    {
-        $user = array('Nirob', 'Urmi', 'Jannah', 'Nahid', 'Raad', 'Anabia', 'Sourav');
-        // return view('post',compact('user'));
-        return view('post', ["data" => $user]);
+
+        // return view('post', ['users' => 'Apu']); //count and if else ........
+        $user = array('Nirob', 'Apu', 'Nahid', 'sam');
+        return view('post',['users'=> $user]);
+
     }
 
-    public function getdata(Request $request)
-    {
-        // echo 'ok done';
+    // public function getdata(Request $request)
+    // {
+    //     // echo 'ok done';
 
-            $one = $request->input('name');
-            $two = $request->input('host');
-            $three = $request->input('amount');
-            $four = $request->input('details');
-            echo $one;
+    //         $one = $request->input('name');
+    //         $two = $request->input('host');
+    //         $three = $request->input('amount');
+    //         $four = $request->input('details');
+    //         echo $one;
 
-        return $request;
-    }
+    //     return $request;
+    // }
 }
