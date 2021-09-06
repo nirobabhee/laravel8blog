@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccessorController;
 use App\Http\Controllers\FileupController;
 use App\Http\Controllers\HttpclientapiController;
 use App\Http\Controllers\InsertController;
@@ -8,8 +9,10 @@ use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Students;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JoinController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,6 +107,24 @@ Route::get('show-cities', [InsertController::class,'readCities']);
 Route::get('city-delete/{id}', [InsertController::class,'delete']);
 Route::get('city-edit/{id}', [InsertController::class,'editView']);
 Route::post('update', [InsertController::class,'update']);
+
+
+
+//Query-Builder
+Route::get('list',[Students::class,'listOfStudents']);
+Route::view('insert-form', 'builder.insert');
+Route::post('student-insert',[Students::class,'insert']);
+Route::get('edit/{id}', [Students::class,'edit']);
+Route::get('delete/{id}', [Students::class,'delete_stu']);
+Route::post('up', [Students::class,'upd']);
+
+
+// Join-Query
+Route::get('join', [JoinController::class,'showJoin']);
+
+
+//Accessor//
+Route::get('accessor', [AccessorController::class,'index']);
 
 
 

@@ -1,5 +1,7 @@
 <h2>ALL CITIES</h2>
-
+@if (session('updateData'))
+   <h4 style="color: green; border-style: solid; border-color: coral;">City has been successfully Updated!    </h4>
+    @endif
 <table border="2px">
     <tr>
         <th>Serial</th>

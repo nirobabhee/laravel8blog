@@ -43,9 +43,9 @@ class InsertController extends Controller
         $update->city_zip_code =$req->CityZipCode;
 
        $flashData = $update->save();
-        $req->session()->flash('updateData', $flashData);
+        $req->session()->flash('updateData', $flashData);// this session flash msg is showed on List page.
 
-        return redirect('city-edit/'.$req->id);
+        return redirect('show-cities/');
 
 
 
