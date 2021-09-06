@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\FileupController;
 use App\Http\Controllers\HttpclientapiController;
+use App\Http\Controllers\InsertController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudentController;
@@ -86,6 +88,22 @@ Route::get('/logout', function () {
 ///file upload///
 Route::view('file-upload', 'fileUpload');
 Route::post('file-upload',[FileupController::class, 'index'] );
+
+
+
+///All Data show via Model to Table Singular -Plural ((_Mapping_))
+Route::get('all-student',[StudentController::class,'allStudentShow']);
+
+//pagination employee table data//
+Route::get('pagiantion', [PaginationController::class,'index']);
+
+//Save///Insert data form by DB Table-//
+Route::view('city', 'insert');
+Route::post('add-city', [InsertController::class,'insertCity']);
+Route::get('show-cities', [InsertController::class,'readCities']);
+Route::get('city-delete/{id}', [InsertController::class,'delete']);
+Route::get('city-edit/{id}', [InsertController::class,'editView']);
+Route::post('update', [InsertController::class,'update']);
 
 
 

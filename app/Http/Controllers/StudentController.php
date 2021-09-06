@@ -10,8 +10,15 @@ class StudentController extends Controller
 {
     function index()
     {
+        // Here Use Model direct//
         // return DB::select('select * from students');//use db then get write query//
         return Student::all();
         //Note:-> laravel 8 - provide Model Name to direct connct to db table if DB table name and Model name same as model-plural and table name can be singular"//
+
+    }
+    function allStudentShow()
+    {
+        $data = Student::all();
+        return view('studentView',['students'=> $data]);
     }
 }
