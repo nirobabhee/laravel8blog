@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class APIController extends Controller
 {
-    public function getdata()
+    public function get()
     {
         return ['name'=>'Nirob', 'age'=>29, 'mobile'=> '01683130030'];
     }
@@ -45,5 +45,12 @@ class APIController extends Controller
         }else{
             return '"Salary:"Failed!';
         }
+    }
+
+    public function delete($id){
+        $salary = Salaries::find($id);
+        $salary->delete();
+
+        return $id.'"Data"=>  Has been Deleted';
     }
 }
