@@ -61,7 +61,7 @@ class APIController extends Controller
 
     function search($salary)
     {
-        return Salaries::where("salary", $salary)->get();
+        return Salaries::where("salary", $salary)->get(); //search any data
     }
 
 }
