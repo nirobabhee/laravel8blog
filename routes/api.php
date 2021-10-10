@@ -28,4 +28,5 @@ Route::post('add',[APIController::class, 'addSalary']);
 Route::put('update',[APIController::class,'updateSalary']); //we can use post method also the updated data //
 //but Put is always recommended to update .
 Route::delete('delete/{id}',[APIController::class,'delete']);
+Route::get('search/{salary}',[APIController::class,'search']);
 

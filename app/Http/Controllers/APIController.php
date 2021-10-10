@@ -49,8 +49,19 @@ class APIController extends Controller
 
     public function delete($id){
         $salary = Salaries::find($id);
-        $salary->delete();
+        $rr= $salary->delete();
 
-        return $id.'"Data"=>  Has been Deleted';
+
+        if (($rr)) {
+            return $id.'"Data"=>  Has been Deleted';
+        }else{
+            return '"Deleted:"Failed!';
+        }
     }
+
+    function search($salary)
+    {
+        return Salaries::where("salary", $salary)->get();
+    }
+
 }
